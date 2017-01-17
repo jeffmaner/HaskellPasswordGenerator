@@ -1,6 +1,7 @@
 module Password ( Config (..)
                 , generatePasswords) where
 
+import Control.Applicative ((<$>), (<*>))
 import Data.Char (toLower, toUpper)
 import Data.List (intersperse, isPrefixOf, nub)
 import System.Random (randomRs, split, StdGen)
@@ -17,10 +18,7 @@ generatePasswords g c s =
   where withoutComments = filter $ not . isComment
         isComment = flip isPrefixOf "#"
         fits = withinBounds . length
-        -- withinBounds = not . \m -> tooShort m || tooLong m
-        withinBounds = not . (<+>) tooShort (||) tooLong
-        tooShort = (lowerBound >)
-        tooLong  = (upperBound <)
+        withinBounds = (&&) <$> (lowerBound <) <*> (< upperBound)
         lowerBound = minimumWordLength c
         upperBound = maximumWordLength c
         generate g m ws
@@ -42,11 +40,6 @@ pickWords g n ws = map transform $ zip (pick g n ws) [ 1.. ]
   where transform (w,n) = if even n then map toUpper w else w
 
 pick g n xs = take n $ nub $ [ xs !! x | x <- randomRs (0, (length xs) - 1) g ]
-
--- Inspired by J's monadic fork.
--- TODO: Find a more meaningful symbol.
-(<+>) = monadicFork
-monadicFork f g h y = let (f',h') = (f y, h y) in g f' h'
 
 generatePasswords :: StdGen -> Config -> String -> [String]
 generatePassword :: StdGen -> Config -> [String] -> String
