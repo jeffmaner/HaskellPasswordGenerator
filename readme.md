@@ -41,7 +41,20 @@ Main> :main
 ```
 
 will result in the same passwords generated. This is a result of Haskell's
-functional paradigm, and my use of [System.Random][6]
+functional paradigm, and my use of [System.Random][6] To generate a different
+list of passwords,
+
+```
+Main> :load "<path-to-file>\\generate-passwords.hs"
+```
+
+then
+
+```
+Main> :main
+```
+
+again.
 
 [Caveat Lector][7]
 ------------------
