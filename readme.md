@@ -43,8 +43,8 @@ Main> :main
 will result in the same passwords generated. This is a result of Haskell's
 functional paradigm, and my use of [System.Random][6]
 
-Caveat Lector
--------------
+[Caveat Lector][7]
+------------------
 
 The reader of delicate sensitivities should stick with the dictionary word
 listing `EN_sample.txt` and avoid `EN_curse.txt`. The cursed passwords
@@ -56,3 +56,4 @@ generated using the dictionary curse word listing make me laugh.
 [4]: https://www.haskell.org/hugs/
 [5]: https://github.com/jeffmaner/RedPasswordGenerator
 [6]: http://hackage.haskell.org/package/random-1.1/docs/System-Random.html
+[7]: https://www.merriam-webster.com/dictionary/caveat%20lector
