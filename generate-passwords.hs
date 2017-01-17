@@ -31,7 +31,7 @@ options = [ Option { configuration = WordsInPassword    , flag = "-w", defaultVa
 optionDescriptions = unlines $ map (\o -> printf "%s    %s (default %s)." (flag o) (description  o) (defaultValue o)) options
 defaultOptions     = concat  $ map (\o -> printf " %s %s"   (flag o) (defaultValue o)) options
 
-helpMessage = [ "Usage: generate-passwords [options]",
+usageMessage = [ "Usage: generate-passwords [options]",
   "",
   "Generates random human-readable passwords in the spirit of xkpasswd.net.",
   "",
@@ -51,7 +51,7 @@ main = do
                           , getOptionDefaultValue Dictionary)
 
   case opts of
-    (Nothing, _) -> do putStrLn $ unlines helpMessage
+    (Nothing, _) -> do putStrLn $ unlines usageMessage
     (Just config, dictionary) -> do
       dictionaryExists <- doesFileExist dictionary
       if not dictionaryExists
