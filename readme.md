@@ -46,7 +46,7 @@ functional paradigm, and my use of [System.Random][6]
 Caveat Lector
 -------------
 
-The reader of delicate sensitities should stick with the dictionary word
+The reader of delicate sensitivities should stick with the dictionary word
 listing `EN_sample.txt` and avoid `EN_curse.txt`. The cursed passwords
 generated using the dictionary curse word listing make me laugh.
 
