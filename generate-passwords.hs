@@ -15,10 +15,6 @@ data Configuration = WordsInPassword
                    | PasswordsToGenerate
                    | Separators
                    | Dictionary deriving Eq
--- TODO: Eliminate having to repeat these six configurations four distinct times below.
---     : I was doing getOption c = head $ find (\o -> c == configuration o) options,
---     : but I thought that was a little sloppy and not taking full advantage of
---     : the type checking system and the union type.
 
 data Option = Option { configuration :: Configuration
                      , flag          :: String
@@ -82,14 +78,7 @@ parseCL (_                        :  xs)       opts     = (Nothing, "")
         maximumWordLengthOption   = getOptionFlag MaximumWordLength
         getOptionFlag = flag . getOption
 
-getOption Dictionary          = findOption Dictionary
-getOption MinimumWordLength   = findOption MinimumWordLength
-getOption PasswordsToGenerate = findOption PasswordsToGenerate
-getOption Separators          = findOption Separators
-getOption WordsInPassword     = findOption WordsInPassword
-getOption MaximumWordLength   = findOption MaximumWordLength
-
-findOption c =
+getOption c =
   let m = find ((c ==) . configuration) options
    in case m of
         Just o  -> o
@@ -99,4 +88,3 @@ optionDescriptions, defaultOptions :: String
 main :: IO ()
 parseCL :: [String] -> (Maybe Config, Path) -> (Maybe Config, Path)
 getOption :: Configuration -> Option
-findOption :: Configuration -> Option
