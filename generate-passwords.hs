@@ -21,14 +21,14 @@ data Option = Option { configuration :: Configuration
                      , defaultValue  :: String
                      , description   :: String }
 
-options = [ Option { configuration = WordsInPassword    , flag = "-w", defaultValue =  "3", description = "Number of words to include in password."             }
-          , Option { configuration = MinimumWordLength  , flag = "-n", defaultValue =  "4", description = "Minimum length of each word to include in password." }
-          , Option { configuration = MaximumWordLength  , flag = "-x", defaultValue =  "8", description = "Maximum length of each word to include in password." }
-          , Option { configuration = PasswordsToGenerate, flag = "-p", defaultValue = "10", description = "Number of passwords to generate."                    }
-          , Option { configuration = Separators         , flag = "-s", defaultValue = "\"!@$%^&*-_+=:|~?/.;\"", description = "List of separators as a string."     }
-          , Option { configuration = Dictionary         , flag = "-d", defaultValue = "EN_sample.txt", description = "Path to dictionary file to use."           } ]
+options = [ Option { configuration = WordsInPassword    , flag = "-w", defaultValue =  "3", description = "Number of words to include in password"             }
+          , Option { configuration = MinimumWordLength  , flag = "-n", defaultValue =  "4", description = "Minimum length of each word to include in password" }
+          , Option { configuration = MaximumWordLength  , flag = "-x", defaultValue =  "8", description = "Maximum length of each word to include in password" }
+          , Option { configuration = PasswordsToGenerate, flag = "-p", defaultValue = "10", description = "Number of passwords to generate"                    }
+          , Option { configuration = Separators         , flag = "-s", defaultValue = "\"!@$%^&*-_+=:|~?/.;\"", description = "List of separators as a string" }
+          , Option { configuration = Dictionary         , flag = "-d", defaultValue = "EN_sample.txt", description = "Path to dictionary file to use"          } ]
 
-optionDescriptions = unlines $ map (\o -> printf "%s    %s" (flag o) (description  o)) options
+optionDescriptions = unlines $ map (\o -> printf "%s    %s (default %s)." (flag o) (description  o) (defaultValue o)) options
 defaultOptions     = concat  $ map (\o -> printf " %s %s"   (flag o) (defaultValue o)) options
 
 helpMessage = [ "Usage: generate-passwords [options]",
