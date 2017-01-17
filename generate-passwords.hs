@@ -28,8 +28,11 @@ options = [ Option { configuration = WordsInPassword    , flag = "-w", defaultVa
           , Option { configuration = Separators         , flag = "-s", defaultValue = "\"!@$%^&*-_+=:|~?/.;\"", description = "List of separators as a string" }
           , Option { configuration = Dictionary         , flag = "-d", defaultValue = "EN_sample.txt", description = "Path to dictionary file to use"          } ]
 
-optionDescriptions = unlines $ map (\o -> printf "%s    %s (default %s)." (flag o) (description  o) (defaultValue o)) options
-defaultOptions     = concat  $ map (\o -> printf " %s %s"   (flag o) (defaultValue o)) options
+defaultOptions     = concat  $ map (\o -> printf " %s %s" (flag o) (defaultValue o)) options
+optionDescriptions = unlines $ map (\o -> printf "%s    %s (default %s)."
+                                                 (flag         o)
+                                                 (description  o)
+                                                 (defaultValue o)) options
 
 usageMessage = [ "Usage: generate-passwords [options]",
   "",
